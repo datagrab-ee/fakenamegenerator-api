@@ -7,7 +7,16 @@ module.exports = class Random {
         const d = $('dd')
 
         this.name = $('.address')[0].children[1].children[0].data
-        this.address = $('.adr')[0].children[0].data.trim() + ' ' + $('.adr')[0].children[2].data.trim()
+        
+        this.address = $('.adr')[0].children[0].data.trim()
+
+        const addrCity = $('.adr')[0].children[2].data.trim()
+        this.city = addrCity.split(',')[0]
+
+        const [state, zipCode] = addrCity.split(',')[1].trim().split(' ')
+        this.state = state
+        this.zipCode = zipCode
+
         this.motherMaidenName = d[0].children[0].data
         this.coordinates = ($('#geo')[0].children[0].data).split(', ')
         this.phone = parseInt(d[3].children[0].data.replace(/\./g, ''));
